@@ -1,6 +1,7 @@
 import numpy as np
 
-from ppqm import misc, units
+from ppqm import units
+from ppqm.utils import files as misc
 
 
 def view_gamess_calculation(calculation):

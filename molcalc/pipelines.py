@@ -6,7 +6,8 @@ import models
 
 import ppqm
 from molcalc_lib import gamess_calculations
-from ppqm import chembridge, misc
+from ppqm import chembridge
+from ppqm.utils import files as misc
 from ppqm.constants import COLUMN_COORDINATES
 
 _logger = logging.getLogger("molcalc:pipe")
@@ -42,7 +43,7 @@ def calculation_pipeline(molinfo, settings):
     # Start respond message
     msg = {"smiles": smiles, "hashkey": hashkey}
 
-    atoms = chembridge.molobj_to_atoms(molobj)
+    atoms = chembridge.get_atoms(molobj, type=int)
     _logger.info(f"{hashkey} '{smiles}' {atoms}")
 
     # Create new calculation
@@ -54,8 +55,8 @@ def calculation_pipeline(molinfo, settings):
 
     gamess_options = {
         "cmd": settings["gamess.rungms"],
-        "gamess_scr": settings["gamess.scr"],
-        "gamess_userscr": settings["gamess.userscr"],
+        "gamess_scr": pathlib.Path(settings["gamess.scr"]),
+        "gamess_userscr": pathlib.Path(settings["gamess.userscr"]),
         "scr": hashdir,
         "filename": hashkey,
     }
