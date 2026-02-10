@@ -1296,8 +1296,11 @@ input[type=text].accept {
     background: white;
     border-bottom: 1px solid #fff;
     border-bottom: 1px solid #f4f4f4;;
-    display:block;
-    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    direction: ltr;
+    padding: 0 70px 0 20px;
     position: relative;
 }
 .molcalc.calculation .mc-content .calc ul.data li:hover {
@@ -1316,6 +1319,46 @@ input[type=text].accept {
     padding:0 40px 0 40px;
     text-align: right;
     direction: ltr;
+}
+.molcalc.calculation .mc-content .calc ul.data li .occ {
+    display: inline-block;
+    min-width: 60px;
+    padding: 0 10px 0 0;
+    text-align: right;
+    direction: ltr;
+}
+.molcalc.calculation .mc-content .calc ul.data li .tag {
+    display: inline-block;
+    min-width: 60px;
+    margin-left: 0;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+.molcalc.calculation .mc-content .calc ul.data li .energy {
+    min-width: 90px;
+    margin-left: auto;
+}
+.molcalc.calculation .mc-content .calc ul.data li .tag {
+    order: 1;
+}
+.molcalc.calculation .mc-content .calc ul.data li .occ {
+    order: 2;
+}
+.molcalc.calculation .mc-content .calc ul.data li .energy {
+    order: 3;
+}
+.molcalc.calculation .mc-content .calc ul.data li.homo .energy,
+.molcalc.calculation .mc-content .calc ul.data li.homo .occ,
+.molcalc.calculation .mc-content .calc ul.data li.homo .tag,
+.molcalc.calculation .mc-content .calc ul.data li .tag.homo {
+    color: #0b5fff;
+}
+.molcalc.calculation .mc-content .calc ul.data li.lumo .energy,
+.molcalc.calculation .mc-content .calc ul.data li.lumo .occ,
+.molcalc.calculation .mc-content .calc ul.data li.lumo .tag,
+.molcalc.calculation .mc-content .calc ul.data li .tag.lumo {
+    color: #d0021b;
 }
 .molcalc.calculation .mc-content .calc ul.data .action {
     /* display: none; */

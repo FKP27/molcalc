@@ -99,14 +99,28 @@ $(function()
         </tr>
     </table>
 
+    <table>
+        <tr>
+            <td>Total electrons</td>
+            <td class="right">{{ electron_count if electron_count is not none else "N/A" }}</td>
+        </tr>
+    </table>
 
 <ul class="data orbital_levels">
 
 {% for energy in orbitals %}
 
-    <li>
+    {% set is_homo = homo_indices and (loop.index0 in homo_indices) %}
+    {% set is_lumo = lumo_indices and (loop.index0 in lumo_indices) %}
+    <li class="{% if is_homo %}homo{% endif %}{% if is_lumo %} lumo{% endif %}">
         <span class="index txt">{{loop.index}}</span>
         <span class="energy txt">{{ energy }} eV</span>
+        {% if orbital_occupancies %}
+        <span class="occ txt">{{ orbital_occupancies[loop.index0] }} e-</span>
+        {% endif %}
+        <span class="tag{% if is_homo %} homo{% elif is_lumo %} lumo{% endif %}">
+            {% if is_homo %}HOMO{% elif is_lumo %}LUMO{% endif %}
+        </span>
         <span class="action"><a href="#" rel="{{loop.index}}"><i class="fas fa-arrow-circle-right"></i></a></span>
     </li>
 
@@ -131,4 +145,3 @@ jmolOrb = Jmol.getApplet("jmolOrb", orbInfo1);
 
 
 </section>
-
